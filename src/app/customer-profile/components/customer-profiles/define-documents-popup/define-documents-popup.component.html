@@ -1,0 +1,135 @@
+<section id="basic-hidden-label-form-layouts">
+  <div class="row match-height">
+    <div class="col-lg-12 col-md-12 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">{{PageTitle}}</h4>
+          <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <form >
+              <div class="pop-Up-Edit-Form p-4">
+                <form [formGroup]="documentsForm">
+                  <div class="form-row">
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_First Name">First Name</label>
+                        <input type="text" id="popup_First Name" name="popup_First Name"
+                         formControlName="firstName" placeholder="Joe" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_Surname">Surname</label>
+                        <input type="text" id="popup_Surname" class="form-control" name="popup_Surname"
+                         formControlName="surName" placeholder="Smith">
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_MiddleName">Middle Name</label>
+                        <input type="text" id="popup_MiddleName" class="form-control" name="popup_MiddleName"
+                         formControlName="middleName" placeholder="enter middle name">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_Type">Type</label>
+                        <select name="" id="popup_Type" class="form-control" formControlName="type">
+                          <option value="">Choose</option>
+                          <option value="Type1">Type1</option>
+                          <option value="Type2">Type2</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_DocumentNumber">Document Number</label>
+                        <input type="text" id="popup_DocumentNumber" formControlName="documentNumber" class="form-control" name="popup_DocumentNumber"
+                          placeholder="PS31185867">
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_ExpiryDate">Expiry Date</label>
+                        <input type="date" name="popup_ExpiryDate" id="popup_ExpiryDate"
+                         formControlName="expiryDate" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_IssuingCountry">Issuing Country</label>
+                        <select name="popup_IssuingCountry" id="popup_IssuingCountry" class="form-control" formControlName="issuedCountry">
+                          <option value="">Choose</option>
+                          <option value="unitedStates">United States</option>
+                          <option value="India">India</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_IssuedBy">Issued By</label>
+                        <input type="text" id="popup_IssuedBy" class="form-control" name="popup_IssuedBy"
+                        formControlName="issuedBy" placeholder="United States-Department...">
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_IssuePlace">Issue Place</label>
+                        <input type="text" id="popup_IssuePlace" class="form-control" name="popup_IssuePlace"
+                        formControlName="issuedPlace" placeholder="Chicago">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_IssueDate">Issue Date</label>
+                        <input type="date" name="popup_IssueDate" id="popup_IssueDate"
+                        formControlName="issueDate" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div class="form-group mb-2">
+                        <label for="popup_ValidCountry">Valid Country</label>
+                        <select name="" id="popup_ValidCountry" class="form-control" formControlName="validCountry">
+                          <option value="">Select Type</option>
+                          <option value="Albania">Albania</option>
+                          <option value="Algeria">Algeria</option>
+                          <option value="American Samoa">American Samoa</option>
+                          <option value="India">India</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row mt-2">
+                    <div class="col-md-4 col-12">
+                      <div class="checkbox checkbox-info mb-2 d-flex">
+                        <input type="checkbox" id="popup_DefaultDocument" formControlName="deafult">
+                        <label for="popup_DefaultDocument" class="ml-4">Default Document</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row mt-2">
+                    <div class="popup-buttons-div text-nowrap ml-auto">
+                      <button class="btn btn-outline-info text-dark font-11 text-nowrap p-0 px-2 mr-1">Cancel</button>
+                      <button (click)="onSubmitForm()" class="btn btn-info font-11 text-nowrap p-0 px-2" *ngIf="!isEdit">Save</button>
+                      <button (click)="onEditSubmitForm()" class="btn btn-info font-11 text-nowrap p-0 px-2" *ngIf="isEdit">Update</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

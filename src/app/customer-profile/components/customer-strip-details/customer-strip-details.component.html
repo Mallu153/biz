@@ -1,0 +1,38 @@
+<div  class="customer-profile-header-div bg-white rounded p-2 d-flex align-items-center justify-content-between" *ngIf="showCustomerDetails">
+  <div class="profile-pic-div d-flex" >
+    <div class="img-div mr-1">
+      <img  class="rounded-circle"  src="{{ showCustomerDetails?.dpImageUrl }}" alt="profile" width="40">
+    </div>
+    <div class="text-div d-flex flex-column">
+      <span class="font-13 text-bold-600 text-nowrap">{{ showCustomerDetails?.salutation }}. {{ showCustomerDetails?.firstName }} {{ showCustomerDetails?.middleName }} {{ showCustomerDetails?.surName }}</span>
+      <span class="font-13 text-nowrap">RE4383972</span>
+    </div>
+  </div>
+  <div class="info-and-buttons-div d-flex align-items-center justify-content-end">
+    <div class="info-div d-flex align-items-center justify-content-center mr-3">
+      <div class="d-flex align-items-center justify-content-center mr-2">
+        <i class="ft-phone ml-2 font-13"></i>
+        <div>
+          <span class="font-13 text-nowrap">{{ tab1Data?.communication?.phoneNumber }}</span>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-end mr-2">
+        <i class="icon-envelope font-13 mr-2"></i>
+        <div class="d-flex flex-row">
+          <span class="font-13 text-nowrap">{{ tab1Data?.communication?.emailId }}</span>
+          <!-- <span class="font-13 text-nowrap">@gmail.com</span> -->
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-end">
+        <i class="fas fa-map-marker-alt font-13 mr-2"></i>
+        <div class="d-flex flex-row">
+          <span class="font-13 text-nowrap">{{ tab1Data?.address?.company }},{{ tab1Data?.address?.street }},{{ tab1Data?.address?.city }},{{ tab1Data?.address?.address }},{{ tab1Data?.address?.zipCode }},{{ tab1Data?.address?.state }},{{ tab1Data?.address?.country}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="buttons-div text-nowrap">
+      <button class="btn btn-outline-info text-dark font-11 text-nowrap p-0 mr-1" (click)="onEdit()">Edit Profile</button>
+      <button class="btn btn-info font-11 text-nowrap p-0">New Booking</button>
+    </div>
+  </div>
+</div>

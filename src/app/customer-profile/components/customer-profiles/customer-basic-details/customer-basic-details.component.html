@@ -1,0 +1,400 @@
+<form [formGroup]="basicDetailsForm">
+  <div class="customer-profile-main-div text-nowrap customer-profile-main-div input,select">
+    <div class="basic-details-div cards-div">
+      <div class="display-card-div row">
+        <div class="col-6">
+          <div class="card">
+            <div class="title-div title-left px-2 py-1 text-bold-600 font-14 bg-info text-white">Name</div>
+            <div class="card-body-div">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <form [formGroup]="profile">
+                      <div class="form-row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Salutation-1">Salutation</label>
+                            <input type="text" id="Salutation-1" class="form-control" formControlName="salutation" name="Salutation" placeholder="Ms"
+                            [ngClass]="{ 'is-invalid': submitted && f.salutation.errors }" />
+                            <div *ngIf="submitted && f.salutation.errors" class="invalid-feedback">
+                              <div *ngIf="f.salutation.errors.required">salutation is required</div>
+                          </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Title">Title</label>
+                            <input type="text" id="Title" class="form-control" formControlName="title" name="Title" placeholder="please enter title">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Forename">Forename</label>
+                            <input type="text" id="Forename" class="form-control" formControlName="firstName" name="Forename" placeholder="Joe"
+                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                              <div *ngIf="f.firstName.errors.required">firstName is required</div>
+                          </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="MiddleName">Middle Name</label>
+                            <input type="text" id="MiddleName" class="form-control" name="MiddleName" formControlName="middleName" placeholder="William">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Surname">Surname</label>
+                            <input type="text" id="Surname" class="form-control" formControlName="surName" name="Surname" placeholder="Smith">
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Alias">Alias</label>
+                            <input type="text" id="Alias" class="form-control" name="Alias" formControlName="alias" placeholder="please enter details">
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="profile-pic-div text-center py-2">
+                      <!-- <div><img class="rounded" width="150" src="assets\img\portrait\small\avatar-s-1.png" alt=""></div> -->
+                        <div class="round-img">
+                          <div class="img-out" *ngIf="!profile.value.dpImageUrl"><img [src]="imageUrl" width="100%">
+                          </div>
+                          <div class="img-out" *ngIf="profile.value.dpImageUrl"><img
+                              [src]="profile.value.dpImageUrl" width="100%"></div>
+                          <input type="file" id="imageUpload" #fileInput (change)="selectFile($event)" accept="image/*"
+                            class="form-control">
+                          <div class="uploadtxt">Add Photo</div>
+                        </div>
+                        <!--Flag variable is used here-->
+                        <div *ngIf="loading">
+                          <span class="hidden-xs">Loading ...</span>
+                        </div>
+
+                      <!-- <div class="pt-2"><a href="#" class="text-info">Remove</a></div> -->
+                    </div>
+                    <div class= form-row>
+                      <textarea
+                    id="envelope"
+                    rows="2"
+                    placeholder="Envelop"
+                    formControlName="envelope"
+                    class="form-control square text-wrap"
+                    name="envelope"
+                  ></textarea>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="title-div title-left text-bold-600 px-2 py-1 font-14 background-color-silver">Communication</div>
+            <div class="card-body-div">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <form [formGroup]="communication">
+                      <div class="form-row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="PhoneNumber">Phone Number</label>
+                            <input type="text" id="PhoneNumber" class="form-control" formControlName="phoneNumber" name="PhoneNumber" placeholder="(469)681-5620">
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="EmailID">Email ID</label>
+                            <input type="text" id="EmailID" class="form-control" formControlName="emailId" name="EmailID" placeholder="joesmith@mail.com">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Fax">Fax</label>
+                            <input type="text" id="Fax" class="form-control" name="Fax" formControlName="fax" placeholder="Please enter fax number">
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="WAP">Web Application Password</label>
+                            <input type="password" id="WAP" class="form-control" name="WAP" formControlName="webApplicationPassword" placeholder="please enter">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="WAURL">Web Application URL</label>
+                            <input type="text" id="WAURL" class="form-control" name="WAURL" formControlName="webApplicationUrl" placeholder="please enter">
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="WALOGIN">Web Application Login</label>
+                            <input type="text" id="WALOGIN" class="form-control" name="WALOGIN" formControlName="webApplicationlogin" placeholder="please enter">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="title-div title-left text-bold-600 px-2 py-1 font-14 background-color-silver">Privacy Settings</div>
+            <div class="card-body-div">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <form [formGroup]="privacy">
+                      <div class="form-row">
+                        <div class="col-md-4 col-12">
+                          <div class="checkbox checkbox-info mb-1">
+                            <input type="checkbox" id="restricted-access" formControlName="legallyRestricts">
+                            <label for="restricted-access" class="ml-4">Legally restricts access to personal information</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-4 col-12">
+                          <div class="checkbox checkbox-info mb-1">
+                            <input type="checkbox" id="accepts-mailing" formControlName="acceptsMailings">
+                            <label for="accepts-mailing" class="ml-4">Accepts mailing only from us.</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-4 col-12">
+                          <div class="checkbox checkbox-info mb-1">
+                            <input type="checkbox" id="share-personal-information" formControlName="personalInfo">
+                            <label for="share-personal-information" class="ml-4">Allow us to share personal information</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-4 col-12">
+                          <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="mail-returned" formControlName="mailReturned">
+                            <label for="mail-returned" class="ml-4">Mail returned (no response/wrong address)</label>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card">
+            <div class="title-div title-right text-bold-600 px-2 py-1 font-14 bg-white">Address</div>
+            <div class="card-body-div">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <form [formGroup]="address">
+                      <div class="form-row">
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Company">Company</label>
+                            <input type="text" id="Company" class="form-control" formControlName="company" name="Company" placeholder="Deluxe Entertainment Service Group">
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="pleaseenter"></label>
+                            <input type="text" id="pleaseenter" class="form-control" formControlName="street" name="pleaseenter" placeholder="please enter">
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="city">City</label>
+                            <input type="text" id="city" class="form-control" name="City" formControlName="city" placeholder="Los Angeles">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Address">Address</label>
+                            <input type="text" id="Address" class="form-control" name="Address" formControlName="address" placeholder="7620 Airport Business Park Way">
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="zipCode">Postal/Zip Code</label>
+                            <input type="text" id="zipCode" class="form-control" name="zipCode" formControlName="zipCode" placeholder="William">
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="MiddleName">Province/State</label>
+                            <select name="state" id="state"  class="form-control" formControlName="state">
+                              <option value="">Choose</option>
+                              <option value="">Andhra Pradesh</option>
+                              <option value="">Karnataka</option>
+                              <option value="">Assam</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Country">Country</label>
+                            <select name="" id="" class="form-control" formControlName="country">
+                              <option value="">Choose</option>
+                              <option value="UnitedStates">United States</option>
+                              <option value="UnitedKingdom">United Kingdom</option>
+                              <option value="India">India</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Country">Area</label>
+                            <select name="Area" id="Area" class="form-control" formControlName="area">
+                              <option value="">Choose</option>
+                              <option value="banjaraHills">Banjara Hills</option>
+                              <option value="jubliHills">Jubilee Hills</option>
+                              <option value="highTech">HITEC City</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="title-div title-right text-bold-600 px-2 py-1 font-14 bg-white">Characteristics</div>
+            <div class="card-body-div">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <form [formGroup]="characteristics">
+                      <div class="form-row">
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Gender">Gender</label>
+                            <select name="" id="Gender" class="form-control" formControlName="gender">
+                              <option value="">please select</option>
+                              <option value="Male">Male</option>
+                              <option value="FeMale">FeMale</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Type">Type</label>
+                            <select name="" id="Type" class="form-control" formControlName="type">
+                              <option value="">Select Type</option>
+                              <option value="Type1">Type1</option>
+                              <option value="Type2">Type2</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="ImportCode">Import Code</label>
+                            <input type="text" id="ImportCode" class="form-control" formControlName="importCode" name="ImportCode" placeholder="IMC345672">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Nationality">Nationality</label>
+                            <select name="Nationality" id="Nationality" class="form-control" formControlName="nationality">
+                              <option value="">Select Nationality</option>
+                              <option value="Indian">Indian</option>
+                              <option value="Afghan">Afghan</option>
+                              <option value="American">American</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="AgeGroup">Age Group</label>
+                            <select name="AgeGroup" id="AgeGroup" class="form-control" formControlName="ageGroup">
+                              <option value="">Choose</option>
+                              <option value="Infants">Infants</option>
+                              <option value="Children">Children</option>
+                              <option value="Adults ">Adults</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="Enquiry">Enquiry</label>
+                            <select name="Enquiry" id="Enquiry" class="form-control" formControlName="enquiry">
+                              <option value="">(Undefined)</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="FirstEnquiry">First Enquiry</label>
+                            <select name="FirstEnquiry" id="FirstEnquiry" class="form-control" formControlName="firstEnquiry">
+                              <option value="">(Undefined)</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                          <div class="form-group mb-2">
+                            <label for="PreviousEnquiry">Previous Enquiry</label>
+                            <select name="PreviousEnquiry" id="PreviousEnquiry" class="form-control" formControlName="previousEnquiry">
+                              <option value="">(Undefined)</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="card">
+                <div class="title-div title-right text-bold-600 px-2 py-1 font-14 bg-white">Important Properties</div>
+                <div class="card-body-div">
+                  <div class="card text-wrap px-3">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac eros nisl. Fusce semper eu erat quis varius. Praesent interdum pretium odio nec tincidunt.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card">
+                <div class="title-div title-right text-bold-600 px-2 py-1 font-14 bg-white">Alert Messages</div>
+                <div class="card-body-div">
+                  <div class="card text-wrap px-3">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac eros nisl. Fusce semper eu erat quis varius. Praesent interdum pretium odio nec tincidunt.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</form>
+

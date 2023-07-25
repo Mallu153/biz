@@ -1,0 +1,209 @@
+<div class="additional-address-div cards-div">
+  <div class="note-section">
+    <div class="note-div">
+      <div class="body-div">
+        <div class="table-div mt-2">
+          <div class="header-div-2 p-1">
+            <div class="records-found-div ml-1">
+              <span class="font-14">{{patchData.length}} Records found</span>
+            </div>
+            <div class="options-buttons-div">
+              <input class="mr-1 font-12" type="text" name="search-input" id="search-input" placeholder="Search">
+              <button class="mr-1 rounded shadow"><i class="fa-solid fa-clone"></i></button>
+              <button class="mr-1 shadow rounded"><i class="fa-solid fa-upload"></i></button>
+              <button class="mr-1 shadow rounded"><i class="fa-solid fa-bars"></i></button>
+              <button class="shadow rounded"><i class="fa-solid fa-maximize"></i></button>
+            </div>
+          </div>
+          <div class="real-table-div">
+            <table>
+              <tr>
+                <th>
+                  <div>
+                    <span class="font-12">Alias</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Title</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Phone</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Email</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Street</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">City</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Postal Code</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Country</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Extra Tab 1</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Extra Tab 2</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Extra Tab 3</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Extra Tab 4</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Extra Tab 5</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Extra Tab 6</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Extra Tab 7</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Extra Tab 8</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+              </tr>
+              <tr *ngFor="let data of additional_address_data">
+                <td>
+                  <div>
+                    <span>{{ patchData?.profile?.alias }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.profile?.title }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.communication?.phoneNumber }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.communication?.emailId }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.address?.street }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.address?.city }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.address?.zipCode }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.address?.country }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.communication?.phoneNumber }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.communication?.phoneNumber }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.communication?.phoneNumber }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.communication?.phoneNumber }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.communication?.phoneNumber }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.communication?.phoneNumber }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.communication?.phoneNumber }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ patchData?.communication?.phoneNumber }}</span>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

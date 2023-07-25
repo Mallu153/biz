@@ -1,0 +1,467 @@
+<form [formGroup]="additionalDetailsForm">
+  <div class="cards-div additional-details-div">
+    <div class="display-card-div row">
+      <div class="col-6">
+        <div class="card">
+          <div class="title-div title-left px-2 py-1 font-14 bg-info text-white">Private</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="bizAdditionalDetails">
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="BirthDate">Birth Date</label>
+                          <input type="date" id="BirthDate" class="form-control" name="BirthDate" formControlName="birthDate">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="BirthPlace">Birth Place</label>
+                          <input type="text" id="BirthPlace" class="form-control" name="BirthPlace" placeholder="California" formControlName="birthPlace">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="BirthCountry">Birth Country</label>
+                          <select name="BirthCountry" id="BirthCountry" class="form-control" formControlName="birthCountry">
+                            <option value="">Choose</option>
+                            <option value="unitedStates">United States</option>
+                            <option value="india">India</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="MaritialStatus">Maritial Status</label>
+                          <select name="MaritialStatus" id="MaritialStatus" class="form-control" formControlName="maritalStatus">
+                            <option value="">Choose</option>
+                            <option value="married">Married</option>
+                            <option value="unMarried">UnMarried</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="Occupation">Occupation</label>
+                          <input type="text" id="Occupation" class="form-control" name="Occupation" placeholder="Please enter occupation" formControlName="occupation">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="title-div title-left px-2 py-1 font-14 background-color-silver">Additional</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="bizAdditionalDetailsAdditional">
+                    <div class="form-row">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="PhoneNumber">Insurence Number</label>
+                          <input type="text" id="InsurenceNumber" class="form-control" formControlName="insuraneNo" name="InsurenceNumber" placeholder="INS654625">
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="BillingName">Billing Name</label>
+                          <input type="text" id="BillingName" class="form-control" formControlName="billingName" name="EmailID" placeholder="enter billing name">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="form-group mb-2">
+                          <label for="AdditionalComments">Additional Comments</label>
+                          <input type="text" id="AdditionalComments" class="form-control" formControlName="additionalComments" name="AdditionalComments" placeholder="enter additional comments">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="WAURL">Classification Type</label>
+                          <select name="ClassificationType" id="ClassificationType" formControlName="clarificationType" class="form-control">
+                            <option value="">Choose</option>
+                            <option value="Incentive">INCENT-Incentive Agent</option>
+                            <option value="classification">Classification</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="form-group mb-2">
+                          <label for="ClassificationRelatedComments">Classification Related Comments</label>
+                          <input type="text" id="ClassificationRelatedComments" class="form-control" formControlName="clarificationRelatedComments" name="ClassificationRelatedComments" placeholder="enter classification related comments">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="title-div title-right px-2 py-1 font-14 bg-white">Modification</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="bizAdditionalDetailsModification">
+                    <div class="form-row">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="CreatedOn">Created On</label>
+                          <select name="" id="" class="form-control" formControlName="createdOn">
+                            <option value="">choose</option>
+                            <option value="15">15-May-2022</option>
+                            <option value="16">16-May-2022</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="CreatedBy">Created By</label>
+                          <input type="text" id="CreatedBy" class="form-control" formControlName="createdBy" name="CreatedBy" placeholder="John Doe">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="LastModifiedOn">Last Modified On</label>
+                          <select name="LastModifiedOn" id="LastModifiedOn" formControlName="lastModifiedOn" class="form-control">
+                            <option value="choose">(not applicable)</option>
+                            <option value="applicable">(applicable)</option>
+                            <option value="notApplicable">(not applicable)</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="LastModifiedBy">Last Modified By</label>
+                          <input type="text" id="LastModifiedBy" class="form-control" formControlName="lastModifiedBy" name="LastModifiedBy" placeholder="enter billing name">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="title-div title-right px-2 py-1 font-14 bg-white">Repeater Program</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="bizAdditionalDetailsRepeaterProgram">
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="RepeaterNumber">Repeater Number</label>
+                          <input type="text" class="form-control" id="RepeaterNumber" formControlName="repeaterNumbers" name="RepeaterNumber" placeholder="RE4383972">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="RepeaterLevel">Repeater Level</label>
+                          <select name="RepeaterLevel" id="RepeaterLevel" class="form-control" formControlName="repeaterLevel">
+                            <option value="">Choose</option>
+                            <option value="d01">D01 -STAR STAR</option>
+                            <option value="d02">D02 -STAR STAR</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="PointsCollected">Points Collected</label>
+                          <input type="text" class="form-control" id="PointsCollected" formControlName="pointsCollected" name="PointsCollected" placeholder="100000">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="title-div title-right px-2 py-1 font-14 bg-white">Statistics</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="bizAdditionalDetailsStatistics">
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="NumberOfBooking">Number of Booking</label>
+                          <input type="text" name="NumberOfBooking" id="NumberOfBooking" formControlName="numberOfBookings" class="form-control" placeholder="4">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="NumberOfTrips">Number of Trips</label>
+                          <input type="text" id="NumberOfTrips" class="form-control" name="NumberOfTrips" formControlName="numberOfTrips" placeholder="enter number of trips">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="NumberOfDay">Number of Day</label>
+                          <input type="text" id="NumberOfDay" class="form-control" name="NumberOfDay" formControlName="numberOfDay" placeholder="31">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <div class="title-div title-right px-2 py-1 font-14 bg-white">Reference</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="bizAdditionalDetailsReferences">
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="Advisor">Advisor</label>
+                          <select name="Advisor" id="Advisor" class="form-control" formControlName="advisor">
+                            <option value="">Choose</option>
+                            <option value="Wright">Jenna Wright</option>
+                            <option value="Jenna">Jenna Wright 2</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="Language">Language</label>
+                          <select name="Language" id="Language" class="form-control" formControlName="language">
+                            <option value="">Choose</option>
+                            <option value="English1">EN-English</option>
+                            <option value="English2">EN-English 2</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="AdvisorTeam">Advisor Team</label>
+                          <select name="AdvisorTeam" id="AdvisorTeam" class="form-control" formControlName="advisorTeam">
+                            <option value="">Choose</option>
+                            <option value="1">advisor team</option>
+                            <option value="2"> team</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="Nationality">Currency</label>
+                          <select name="Nationality" id="Nationality" class="form-control" formControlName="currency">
+                            <option value="">Choose</option>
+                            <option value="1">USD-United States Of America</option>
+                            <option value="2">USD-United States Of America 1</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="AccessGroup">Access Group</label>
+                          <select name="AccessGroup" id="AccessGroup" class="form-control" formControlName="accessGroup">
+                            <option value="">Choose</option>
+                            <option value="1">access group 1</option>
+                            <option value="2">access group 2</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="AccessGroup">Referer</label>
+                          <input type="text" id="AccessGroup" name="AccessGroup" formControlName="referrer" placeholder="Mr.James Smith" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="title-div title-left px-2 py-1 font-14 background-color-silver">Web Controls</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="bizAdditionalDetailsWebControls">
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="checkbox checkbox-info mb-1">
+                          <input type="checkbox" id="AllowToChangeSirName" formControlName="allowToChanges">
+                          <label for="AllowToChangeSirName" class="ml-4">Allow to change sirname through web</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="checkbox checkbox-info mb-1">
+                          <input type="checkbox" id="AllowToMergeSimilarFolios" formControlName="allowToMerge">
+                          <label for="AllowToMergeSimilarFolios" class="ml-4">Allow to merge with similar folios</label>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+        <div class="card">
+          <div class="title-div title-left px-2 py-1 font-14 background-color-silver">Additional Privacy Settings</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="bizAdditionalDetailsPrivacySettings">
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="checkbox checkbox-info mb-1">
+                          <input type="checkbox" id="Privacy05" formControlName="privacy01">
+                          <label for="Privacy05" class="ml-4">Privacy 05</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="checkbox checkbox-info mb-1">
+                          <input type="checkbox" id="Privacy06" formControlName="privacy02">
+                          <label for="Privacy06" class="ml-4">Privacy 06</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="checkbox checkbox-info mb-1">
+                          <input type="checkbox" id="Privacy07" formControlName="privacy03">
+                          <label for="Privacy07" class="ml-4">Privacy 07</label>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+        <div class="card">
+          <div class="title-div title-right px-2 py-1 font-14 bg-white">Benefit Program</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="bizAdditionalDetailsBenefitProgram">
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="BenifitProgramApplicability">Benifit Program Applicability</label>
+                          <select name="BenifitProgramApplicability" id="BenifitProgramApplicability" formControlName="benefitProgramApplicability" class="form-control">
+                            <option value="">Choose</option>
+                            <option value="1">Participate to Date 1</option>
+                            <option value="2">Participate to Date 2</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="BenefitLevel">Benefit Level</label>
+                          <select name="BenefitLevel" id="BenefitLevel" class="form-control" formControlName="benefitLevel">
+                            <option value="">Choose</option>
+                            <option value="1">01_GST Guest Star 1</option>
+                            <option value="2">01_GST Guest Star 2</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="BenefitStatusBalance">Benefit Status Balance</label>
+                          <input type="text" id="BenefitStatusBalance" name="BenefitStatusBalance" formControlName="benefitStatusBalance" placeholder="1135" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="ProfileBenefitBeginningDate">Profile Benefit Beginning Date</label>
+                          <input type="date" id="ProfileBenefitBeginningDate" formControlName="profileBenefitBeginningDate" name="ProfileBenefitBeginningDate" placeholder="select date" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="ProfileBenefitEndDate">Profile Benefit End Date</label>
+                          <input type="date" id="ProfileBenefitEndDate" formControlName="profileBenefitEndDate" name="ProfileBenefitEndDate" placeholder="select date" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="title-div title-left px-2 py-1 font-14 background-color-silver">Other Details</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="bizAdditionalDetailsOtherDetails">
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="checkbox checkbox-info mb-1">
+                          <input type="checkbox" id="ProfileActive" formControlName="profileActive">
+                          <label for="ProfileActive" class="ml-4">Profile Active</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="form-group mt-2 mb-2">
+                          <label for="OtherDetailsComments">Comments</label>
+                          <input type="text" id="OtherDetailsComments" formControlName="comments" name="OtherDetailsComments" class="form-control" placeholder="enter comments">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<button type="button" (click)="onSubmit()">Save</button>

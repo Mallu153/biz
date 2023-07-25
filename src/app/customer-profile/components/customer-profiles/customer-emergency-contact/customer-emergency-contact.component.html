@@ -1,0 +1,277 @@
+
+<form [formGroup]="emergencyContactForm">
+  <div class="cards-div emergency-contact-div" >
+    <div class="display-card-div row">
+      <div class="col-6">
+        <div class="card">
+          <div class="title-div title-left text-bold-600 px-2 py-1 font-14 bg-info text-white">Name</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="emergencyContactRequest">
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Salutation">Salutation</label>
+                          <select id="EC_Salutation" class="form-control" formControlName="salutation">
+                            <option value="">Choose</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Dr">Dr</option>
+                            <option value="Prof">Prof</option>
+                            <option value="Mr">Mr</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Title">Title</label>
+                          <input type="text" id="EC_Title" class="form-control" name="EC_Title" formControlName="title" placeholder="enter title">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Forename">Forename</label>
+                          <input type="text" name="EC_Forename" id="EC_Forename" placeholder="Arlene" class="form-control" formControlName="firstName">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_MiddleName">Middle Name</label>
+                          <input type="text" id="EC_MiddleName" name="EC_MiddleName" placeholder="enter middle name" class="form-control" formControlName="middleName">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Surname">Surname</label>
+                          <input type="text" id="EC_Surname" class="form-control" name="EC_Surname" placeholder="Smith" formControlName="sureName">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Alias">Alias</label>
+                          <input type="text" id="EC_Alias" class="form-control" name="EC_Alias" placeholder="enter alias" formControlName="alias">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Gender">Gender</label>
+                          <select name="EC_Gender" id="EC_Gender" class="form-control" formControlName="gender">
+                            <option value="">Choose</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Relation">Relation</label>
+                          <input type="text" id="EC_Relation" class="form-control" name="EC_Relation" placeholder="Mother" formControlName="relation">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Mailing">Mailing</label>
+                          <input type="text" id="EC_Mailing" class="form-control" name="EC_Mailing" placeholder="enter mailing" formControlName="mailing">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Envelope">Envelope</label>
+                          <textarea id="EC_Envelope" name="EC_Envelope" rows="4" cols="50" placeholder="enter details" class="form-control" formControlName="envelopeDetails"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="title-div title-left text-bold-600 px-2 py-1 font-14 background-color-silver">Private</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="emergencyPrivateRequest">
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_DateOfBirth">Date of Birth</label>
+                          <input type ="date" name="EC_DateOfBirth" id="EC_DateOfBirth" class="form-control" formControlName="dateOfBirth">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_BirthPlace">Birth Place</label>
+                          <input type="text" id="EC_BirthPlace" class="form-control" name="EC_BirthPlace" placeholder="California" formControlName="birthPlace">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_BirthCountry">Birth Country</label>
+                          <select name="EC_BirthCountry" id="EC_BirthCountry" class="form-control" formControlName="birthCountry">
+                            <option value="">Choose</option>
+                            <option value="unitedStates">United States</option>
+                            <option value="india">India</option>
+                            <option value="dubai">Dubai</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Occupation">Occupation</label>
+                          <input type="text" id="EC_Occupation" class="form-control" name="EC_Occupation" placeholder="Doctor" formControlName="occupation">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_PreviousSurname">Previous Surname</label>
+                          <input type="text" id="EC_PreviousSurname" class="form-control" name="EC_PreviousSurname" placeholder="enter previous surname" formControlName="previousSurName">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="card">
+          <div class="title-div title-right text-bold-600 px-2 py-1 font-14 bg-white">Address</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="emergencyAddressRequest">
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Address">Address</label>
+                          <textarea class="form-control" id="EC_Address" name="EC_Address" rows="4" cols="50" placeholder="7620 airport business park way" formControlName="address"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_City">City</label>
+                          <input type="text" id="EC_City" name="EC_City" class="form-control" placeholder="enter city" formControlName="city">
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Province_State">Province/State</label>
+                          <select name="EC_Province_State" id="EC_Province_State" class="form-control" formControlName="state">
+                            <option value="">Choose</option>
+                            <option value="andhrapradesh">Andhra Pradesh</option>
+                            <option value="telangana">telangana</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Country">Country</label>
+                          <select id="EC_Country" name="EC_Country" class="form-control" formControlName="country">
+                            <option value="">Choose</option>
+                            <option value="india">India</option>
+                            <option value="dubai">Dubai</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-4 col-12">
+                        <div class="form-group mb-2">
+                          <label for="Nationality">Postal/Zip Code</label>
+                          <input type="text" id="Nationality" name="Nationality" class="form-control" placeholder="enter postal/zip Code" formControlName="zipCode">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="title-div title-left text-bold-600 px-2 py-1 font-14 background-color-silver">Communication</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="emergencyCommunicationRequest">
+                    <div class="form-row">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Phone">Phone</label>
+                          <input type="text" id="EC_Phone" name="EC_Phone" class="form-control" placeholder="(534)239-8765" formControlName="phoneNumber">
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Email">Email</label>
+                          <input type="text" id="EC_Email" name="EC_Email" class="form-control" placeholder="Arlenesmith1970@mail.com" formControlName="emailId">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_WAU">Web Application URL</label>
+                          <input type="text" id="EC_WAU" name="EC_WAU" class="form-control" placeholder="enter web application url" formControlName="webApplicationUrl">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Fax">Fax</label>
+                          <input type="text" id="EC_Fax" name="EC_Fax" class="form-control" placeholder="enter fax" formControlName="fax">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+        <div class="card">
+          <div class="title-div title-left text-bold-600 px-2 py-1 font-14 background-color-silver">Other Details</div>
+          <div class="card-body-div">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <form [formGroup]="emergencyOtherDetailsRequest">
+                    <div class="form-row">
+                      <div class="col-md-12 col-12">
+                        <div class="form-group mb-2">
+                          <label for="EC_Comments">Comments</label>
+                          <input type="text" id="EC_Comments" name="EC_Comments" class="form-control" placeholder="enter comments" formControlName="comments">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<button type="button" (click)="onSubmit()">Save</button>
