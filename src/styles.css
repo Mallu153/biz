@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+/* //global table css */
+.refresh {
+    background-image: linear-gradient(to right, #efdeff 0%, #cdb7e2 51%, #efdeff 100%);
+    color: #975aff;
+    letter-spacing: 1;
+  }
+  .refresh1 {
+    background: #efdeff;
+    color: #975aff;
+    letter-spacing: 1;
+  }
+  .table .refresh th {
+    color: #975aff;
+  }
+  .table .refresh th,
+  .table td {
+    padding: 0.5rem 1rem !important;
+    vertical-align: top;
+    border-top: 1px solid #f5f5f5;
+    vertical-align: middle;
+    font-weight: 500;
+    font-size: 13px !important;
+  }

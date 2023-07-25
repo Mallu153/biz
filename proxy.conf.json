@@ -1,0 +1,101 @@
+{
+  "/eServices": {
+    "target": "http://eservum.dev.com/eservices",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/eServices": ""
+    }
+  },
+  "/eServ": {
+    "target": "http://192.168.1.14:1501/eservices",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/eServ": ""
+    }
+  },
+  "/dynamicService": {
+    "target": "http://eservum.dev.com/es",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/dynamicService": ""
+    }
+  },
+  "/propertymanagement": {
+    "target": "http://bizprofile.dev.com/propertymanagement",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/propertymanagement": ""
+    }
+  },
+  "/authApi": {
+    "target": "http://eservum.dev.com/login-management",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/authApi": ""
+    }
+  },
+  "/bpfApi": {
+    "target": "http://eservum.dev.com/backend/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/bpfApi": ""
+    }
+  },
+  "/feLoginManagement": {
+    "target": "http://eservum.dev.com/fe-login-management/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/feLoginManagement": ""
+    }
+  },
+  "/domainName": {
+    "target": "http://bizprofile.dev.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/domainName": ""
+    }
+  },
+  "/esFeApi": {
+    "target": "http://eservum.dev.com/esrequest/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/esFeApi": ""
+    }
+  },
+  "/esUmApi": {
+    "target": "http://eservum.dev.com/user-management/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/esUmApi": ""
+    }
+  },
+  "/bizprofile": {
+    "target": "http://bizprofile.dev.com/bizprofile",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/bizprofile": ""
+    }
+  }
+}

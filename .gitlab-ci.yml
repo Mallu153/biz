@@ -1,0 +1,28 @@
+image: gitlab/dind
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+  
+build:
+  stage: build
+  script:
+    - docker info
+    - docker build -f Dockerfile -t bizprofile:$CI_PIPELINE_ID . 
+    - docker tag bizprofile:$CI_PIPELINE_ID bizprofile:latest
+
+docker-deploy:
+  stage: deploy
+  script:
+    - export IMGID=`docker ps | grep bizprofile | awk '{print $1}'`
+    - |
+        if [ -n "$IMGID" ]
+        then
+          docker stop $IMGID
+          docker run -d -p 5500:80 --restart always bizprofile:$CI_PIPELINE_ID  
+        else
+          echo "No relevant image avaliable"
+          docker run -d -p 5500:80 --restart always bizprofile:$CI_PIPELINE_ID 
+        fi
+

@@ -1,0 +1,183 @@
+<!-- Assuming that the data is available in the component as 'documentData' -->
+<div class="documents-div cards-div">
+  <div class="note-section">
+    <div class="note-div">
+      <div class="body-div">
+        <div class="table-div mt-2">
+          <div class="header-div-2 p-1">
+            <div class="records-found-div ml-1">
+              <span class="font-14">{{ documentData.length }} Records found</span>
+            </div>
+            <div class="options-buttons-div">
+              <input class="mr-1 font-12" type="text" name="search-input" id="search-input" placeholder="Search">
+              <button class="mr-1 rounded shadow"><i class="fa-solid fa-clone"></i></button>
+              <button class="mr-1 shadow rounded"><i class="fa-solid fa-upload"></i></button>
+              <button class="mr-1 shadow rounded"><i class="fa-solid fa-bars"></i></button>
+              <button class="shadow rounded" data-toggle="modal" data-target="#exampleModal" (click)="openMaximizePopup()" ngbTooltip="documentFormPopUp">
+                <i class="fa-solid fa-maximize"></i>
+              </button>
+
+            </div>
+          </div>
+          <div class="real-table-div">
+            <table>
+              <tr>
+                <th>
+                  <div>
+                    <span class="font-12">Stored Documents</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Title</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Document Number</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Issuing Country</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Issue Name</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Default</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Expiry Date</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">surName</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">firstName</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">middleName</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Valid Country</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">issued Date</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    <span class="font-12">Edit</span>
+                    <i class="fa-solid fa-filter ml-2"></i>
+                  </div>
+                </th>
+              </tr>
+              <tr *ngFor="let data of documentData">
+                <td>
+                  <div>
+                    <span>{{ data.storedDocuments }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ data.type }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ data.documentNumber }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ data.issuedCountry }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{ data.issuedBy }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <!-- Display a checkbox if 'data.default' is true -->
+                    <input class="mx-auto TablecheckBox" type="checkbox" [checked]="data.deafult">
+                  </div>
+                </td>
+
+                <td>
+                  <div>
+                    <span>{{ data.expiryDate | date: 'dd-MMM-yyyy' }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{data?.surName}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{data?.firstName}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{data?.middleName}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{data?.validCountry}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>{{data?.issueDate}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span>
+                      <button class="shadow rounded" data-toggle="modal" data-target="#exampleModal" (click)="onEditClick(data)" >
+                        <i class="fa-solid fa-pencil"></i>
+                      </button>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

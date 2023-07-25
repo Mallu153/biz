@@ -1,0 +1,3485 @@
+    <section class="customer-profile-section">
+      <div class="customer-profile-div">
+        <div class="customer-profile-tab-div d-flex align-items-center bg-white px-4 py-2 rounded" *ngIf="isEdit">
+          <i class="ft-chevron-left cursor-pointer"></i>
+          <h3 class="mb-0 ml-3 font-16 text-bold-600">Customer Profile</h3>
+        </div>
+        <div class="customer-profile-tab-div d-flex align-items-center bg-white px-4 py-2 rounded" *ngIf="!isEdit">
+          <i class="ft-chevron-left cursor-pointer"></i>
+          <h3 class="mb-0 ml-3 font-16 text-bold-600">Edit Customer Profile</h3>
+          <button class="ml-auto custom-folio-info-tab-filter-button btn bg-white px-1 py-0 mr-1" (click)="onSubmit()">
+            <i class="fe ft-corner-up-left"></i>
+          </button>
+          <button class="btn btn-info px-1 py-0 ml-1" ngbTooltip="Save" placement="bottom"  (click)="onSubmit()">
+            <i class="fe ft-save" ></i>
+          </button>
+        </div>
+    <div class="customer-profile-body-div p-2">
+      <app-customer-strip-details [tab1Data]="tab1Data"  (saveFormData)="editFormUpdate($event)" *ngIf="isEdit&&tab1Data"></app-customer-strip-details>
+      <div class="customer-profile-main-div py-2 text-nowrap">
+        <div class="scroll-wrapper">
+        </div>
+        <div class="tags-div">
+          <div class="card-body p-0">
+            <ul ngbNav #basicnav="ngbNav" [(activeId)]="active" class="nav-tabs customer-profile-tabs-ul" (navChange)="onNavChange($event)">
+              <li [ngbNavItem]="1">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor">Basic Details</a>
+                <ng-template ngbNavContent>
+                  <app-customer-basic-details [patchData]="tab1Data" *ngIf="!isEdit" (tab1Data)="handleTab1Data($event)"></app-customer-basic-details>
+                  <app-customer-basic-details [patchData]="tab1Data" *ngIf="isEdit&&tab1Data" (tab1Data)="handleTab1Data($event)"></app-customer-basic-details>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor">Additional Details</a>
+                <ng-template ngbNavContent>
+                  <app-customer-additional-details [patchAdditionalData]="tab2Data" *ngIf="!isTab2Edit" (tab2Data)="handleTab2Data($event)"></app-customer-additional-details>
+                  <app-customer-additional-details [patchAdditionalData]="tab2Data" *ngIf="isTab2Edit&&tab2Data" (tab2Data)="handleTab2Data($event)"></app-customer-additional-details>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="3">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor">Emergency Contact</a>
+                <ng-template ngbNavContent>
+                  <app-customer-emergency-contact [patchEmergencyData]="tab3Data" *ngIf="!isTab3Edit" (tab3Data)="handleTab3Data($event)"></app-customer-emergency-contact>
+                  <app-customer-emergency-contact [patchEmergencyData]="tab3Data" *ngIf="isTab3Edit&&tab3Data" (tab3Data)="handleTab3Data($event)"></app-customer-emergency-contact>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="4">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor"
+                >Additional Address</a>
+                <ng-template ngbNavContent>
+                 <app-customer-additional-address [patchData]="tab1Data"  (tab1Data)="handleTab1Data($event)" ></app-customer-additional-address>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="5">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor">Documents</a>
+                <ng-template ngbNavContent>
+                  <app-customer-documents [patchDocumentData]="tab4Data" (tab4Data)="handleTab4Data($event)" ></app-customer-documents>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="6">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor">Note</a>
+                <ng-template ngbNavContent>
+                  <div class="note-div cards-div">
+                    <div class="note-section">
+                      <div class="note-div">
+                        <div class="body-div">
+                          <div class="table-div mt-2">
+                            <div class="header-div-1 p-1">
+                              <div class="note-buttons-div mr-1 d-flex">
+                                <button class="font-12 btn btn-outline-info px-1 py-0">Note Summary</button>
+                              </div>
+                              <div class="add-remove-customize-div mr-2">
+                                <button class="btn mr-1"><i class="fa-solid fa-circle-minus"></i></button>
+                                <button class="btn mr-1"><i class="fa-solid fa-square-plus"></i></button>
+                                <button class="btn mr-1"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="btn"><i class="fas fa-plus-square"></i></button>
+                              </div>
+                            </div>
+                            <div class="header-div-2 p-1">
+                              <div class="records-found-div ml-1">
+                                <span class="font-14">01 Records found</span>
+                              </div>
+                              <div class="options-buttons-div">
+                                <input class="mr-1 font-12" type="text" name="search-input" id="search-input" placeholder="Search">
+                                <button class="mr-1 rounded shadow"><i class="fa-solid fa-clone"></i></button>
+                                <button class="mr-1 shadow rounded"><i class="fa-solid fa-upload"></i></button>
+                                <button class="mr-1 shadow rounded"><i class="fa-solid fa-bars"></i></button>
+                                <button class="shadow rounded"><i class="fa-solid fa-maximize"></i></button>
+                              </div>
+                            </div>
+                            <div class="real-table-div">
+                              <table>
+                                <tr>
+                                  <th>
+                                    <div class="noteCheckBoxDiv">
+                                      <input class="TablecheckBox" type="checkbox" disabled>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Created Date</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Status</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Output</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Template Group</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Code</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Type</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Description</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Email Date</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Note Template Name & Code</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Agent Name</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 1</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 2</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                </tr>
+                                <tr *ngFor="let data of note_data">
+                                  <td>
+                                    <div class="noteCheckBoxDiv">
+                                      <input class="TablecheckBox" type="checkbox" *ngIf="data.showCheckbox">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.created_date}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="note-table-switch-div custom-switch custom-switch-info custom-control-inline">
+                                      <input type="checkbox" class="custom-control-input" id="color-switch-6" checked *ngIf="data.showSwitch">
+                                      <label class="custom-control-label" for="color-switch-6" *ngIf="data.showSwitch">
+                                      </label>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.output}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.template_group}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.code}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.type}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.description}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.email_date}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.note_template_name_and_code}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.agent_name}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="7">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor">Custom Folio Info</a>
+                <ng-template ngbNavContent>
+                  <div class="custom-folio-info-div cards-div">
+                    <div class="custom-folio-info-inner-div pt-3">
+                      <div class="custom-folio-info-header-div d-flex">
+                        <div class="d-flex w-50 mr-3">
+                          <div class="search-div d-flex flex-column w-100 mr-2">
+                            <label class="font-12 mb-1" for="">Search</label>
+                            <input class="font-12" type="text" placeholder="enter search keyword">
+                          </div>
+                          <div class="survey-select-div d-flex flex-column w-100">
+                            <label class="font-12 mb-1" for="">Survey Group</label>
+                            <select name="" id="" class="font-12">
+                              <option class="font-12" value="">select survey group</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="d-flex flex-column mr-3">
+                          <span class="custom-folio-info_Include-unanswered-questions-span font-12 mb-1">Include unanswered questions</span>
+                          <div class="custom-folio-info-switch-div custom-switch custom-switch-info custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" id="color-switch-6" checked>
+                            <label class="custom-control-label" for="color-switch-6">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-end">
+                          <button class="btn btn-info mr-1 px-1 py-0"><i class="fa-solid fa-magnifying-glass"></i></button>
+                          <button class="custom-folio-info-tab-filter-button btn bg-white px-1 py-0 mr-1" ><i class="fa-solid fa-filter" style="color:#7B7B7B"></i></button>
+                        </div>
+                      </div>
+                      <div class="custom-folio-info-body-div">
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf="!custom_folio_tab_survey_tuggle" (click)="custom_folio_tab_survey_table_show()"></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer" *ngIf="custom_folio_tab_survey_tuggle" (click)="custom_folio_tab_survey_table_show()"></i>
+                            <span class="font-12">Survey:Amenities</span>
+                          </div>
+                          <div class="card table-div ml-5 mr-2 mt-0" *ngIf="custom_folio_tab_survey_table_tuggle">
+                            <div class="header-div-2 p-1">
+                              <div class="records-found-div ml-1">
+                                <span class="font-12">20 Records found</span>
+                              </div>
+                            </div>
+                            <div class="real-table-div custom-folio-table-div">
+                              <table>
+                                <tr>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Question</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Answer</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Survey Scope</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Event Code</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Actions</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 1</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 2</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 3</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 4</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                </tr>
+                                <tr *ngFor="let data of custom_folio_info_data">
+                                  <td>
+                                    <div>
+                                      <span>{{data.question}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.answer}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div *ngIf="data.answer!==''">
+                                      <i class="fa-solid fa-eye border border-dark rounded p-1 cursor-pointer mr-1"></i>
+                                      <i class="fa-solid fa-circle-xmark border border-dark rounded p-1 cursor-pointer"></i>
+                                    </div>
+                                    <div *ngIf="data.answer===''">
+                                      <button class="btn btn-transparent border-dark text-dark px-1 py-0 font-12">Set Answer</button>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                            <span class="font-12">Survey: Medical Remarks</span>
+                          </div>
+                        </div>
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                            <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                          </div>
+                        </div>
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                            <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                          </div>
+                        </div>
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                            <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                          </div>
+                        </div>
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                            <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="8">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor">Questionnaire</a>
+                <ng-template ngbNavContent>
+                  <div class="questionnnaire-div cards-div">
+                    <div class="questionnnaire-inner-div pt-3">
+                      <div class="questionnnaire-header-div d-flex">
+                        <div class="d-flex w-50 mr-3">
+                          <div class="search-div d-flex flex-column w-100 mr-2">
+                            <label class="font-12 mb-1" for="">Search</label>
+                            <input class="font-12" type="text" placeholder="enter search keyword">
+                          </div>
+                          <div class="survey-select-div d-flex flex-column w-100">
+                            <label class="font-12 mb-1" for="">Survey Group</label>
+                            <select name="" id="" class="font-12">
+                              <option class="font-12" value="">select survey group</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="d-flex flex-column mr-3">
+                          <span class="questionnnaire_Include-unanswered-questions-span font-12 mb-1">Include unanswered questions</span>
+                          <div class="questionnnaire-switch-div custom-switch custom-switch-info custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" id="color-switch-6" checked>
+                            <label class="custom-control-label" for="color-switch-6">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-end">
+                          <button class="btn btn-info mr-1 px-1 py-0"><i class="fa-solid fa-magnifying-glass"></i></button>
+                          <button class="questionnnaire-tab-filter-button btn bg-white px-1 py-0 mr-1" ><i class="fa-solid fa-filter" style="color:#7B7B7B"></i></button>
+                        </div>
+                      </div>
+                      <div class="questionnnaire-body-div">
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf="!questionnnaire_tab_survey_tuggle" (click)="questionnnaire_tab_survey_table_show()"></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer" *ngIf="questionnnaire_tab_survey_tuggle" (click)="questionnnaire_tab_survey_table_show()"></i>
+                            <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                          </div>
+                          <div class="card table-div ml-5 mr-2 mt-0" *ngIf="questionnnaire_tab_survey_table_tuggle">
+                            <div class="header-div-2 p-1">
+                              <div class="records-found-div ml-1">
+                                <span class="font-12">20 Records found</span>
+                              </div>
+                            </div>
+                            <div class="real-table-div questionnnaire-table-div">
+                              <table>
+                                <tr>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Question</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Answer</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Created Date</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Actions</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 1</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 2</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 3</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 4</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 5</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 6</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 7</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 8</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                </tr>
+                                <tr *ngFor="let data of questionnnaire_data">
+                                  <td>
+                                    <div>
+                                      <span>{{data.question}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.answer}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div *ngIf="data.answer!==''">
+                                      <i class="fa-solid fa-eye border border-dark rounded p-1 cursor-pointer mr-1"></i>
+                                      <i class="fa-solid fa-circle-xmark border border-dark rounded p-1 cursor-pointer"></i>
+                                    </div>
+                                    <div *ngIf="data.answer===''">
+                                      <button class="btn btn-transparent border-dark text-dark px-1 py-0 font-12">Set Answer</button>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                            <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                          </div>
+                        </div>
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                            <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                          </div>
+                        </div>
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                            <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                          </div>
+                        </div>
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                            <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                          </div>
+                        </div>
+                        <div class="card title-div">
+                          <div class="py-2 d-flex align-items-center">
+                            <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                            <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                            <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="9">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor">Voucher</a>
+                <ng-template ngbNavContent>
+                  <div class="voucher-div cards-div">
+                    <div class="voucher-section">
+                      <div class="voucher-div">
+                        <div class="body-div">
+                          <div class="table-div mt-2">
+                            <div class="header-div-2 p-1">
+                              <div class="records-found-div ml-1">
+                                <span class="font-14">01 Records found</span>
+                              </div>
+                              <div class="options-buttons-div">
+                                <input class="mr-1 font-12" type="text" name="search-input" id="search-input" placeholder="Search">
+                                <button class="mr-1 rounded shadow"><i class="fa-solid fa-clone"></i></button>
+                                <button class="mr-1 shadow rounded"><i class="fa-solid fa-upload"></i></button>
+                                <button class="mr-1 shadow rounded"><i class="fa-solid fa-bars"></i></button>
+                                <button class="shadow rounded"><i class="fa-solid fa-maximize"></i></button>
+                              </div>
+                            </div>
+                            <div class="real-table-div">
+                              <table>
+                                <tr>
+                                  <th>
+                                    <div class="noteCheckBoxDiv">
+                                      <input class="TablecheckBox" type="checkbox" disabled>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Created Date</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Status</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Name of Voucher</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Type</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Code</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Window</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="low-width-div">
+                                      <span class="font-12">Recipient Name</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Buyer Name</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Action</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 0</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 1</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 2</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                </tr>
+                                <tr *ngFor="let data of voucher_data">
+                                  <td>
+                                    <div class="noteCheckBoxDiv">
+                                      <input class="TablecheckBox" type="checkbox" *ngIf="data.showCheckbox">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.created_date}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <i class="fas fa-check-circle text-success mr-2 font-18" *ngIf="data.status==='Active'"></i>
+                                      <i class="fas fa-times-circle voucer-tab-table-inactive-icon mr-2 font-18" *ngIf="data.status==='Inactive'"></i>
+                                      <span>{{data.status}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.nameOfVoucher}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span><i *ngIf="data.action==='yes'" class="fa-solid fa-pencil cursor-pointer border border-dark rounded p-1"></i></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="10">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor">Audit Info</a>
+                <ng-template ngbNavContent>
+                  <div class="documents-div cards-div">
+                    <div class="note-section">
+                      <div class="note-div">
+                        <div class="body-div">
+                          <div class="table-div mt-2">
+                            <div class="Audit-Info-header-div-1 p-1 d-flex justify-content-start">
+                              <div class="note-buttons-div button-group">
+                                <button class="font-12 px-2 py-1" [ngClass]="{ 'active': selectedNoteButton === 'button1' }" (click)="selectNoteButton('button1')">+ Audit Detailed Changes</button>
+                                <div class="vertical-line-div"></div>
+                                <button class="font-12 px-2 py-1" [ngClass]="{ 'active': selectedNoteButton === 'button2' }" (click)="selectNoteButton('button2')">+ Audit History</button>
+                                <div class="vertical-line-div"></div>
+                                <button class="font-12 px-2 py-1" [ngClass]="{ 'active': selectedNoteButton === 'button3' }" (click)="selectNoteButton('button3')">+ Folio Merge Details</button>
+                              </div>
+                            </div>
+                            <div class="header-div-2 p-1">
+                              <div class="records-found-div ml-1">
+                                <span class="font-14">03 Records found</span>
+                              </div>
+                              <div class="options-buttons-div">
+                                <input class="mr-1 font-12" type="text" name="search-input" id="search-input" placeholder="Search">
+                                <button class="mr-1 rounded shadow"><i class="fa-solid fa-clone"></i></button>
+                                <button class="mr-1 shadow rounded"><i class="fa-solid fa-upload"></i></button>
+                                <button class="mr-1 shadow rounded"><i class="fa-solid fa-bars"></i></button>
+                                <button class="shadow rounded"><i class="fa-solid fa-maximize"></i></button>
+                              </div>
+                            </div>
+                            <div class="real-table-div">
+                              <table>
+                                <tr>
+                                  <th>
+                                    <div class="noteCheckBoxDiv">
+                                      <input class="TablecheckBox" type="checkbox" disabled>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Date & Time</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Audit Type Description</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Agency Code & Name</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Column Name</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Column Description</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">User Surname</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">User Forename</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Login</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 1</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 2</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 3</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div>
+                                      <span class="font-12">Extra Tab 4</span>
+                                      <i class="fa-solid fa-filter ml-2"></i>
+                                    </div>
+                                  </th>
+                                </tr>
+                                <tr *ngFor="let data of auditinfo_data">
+                                  <td>
+                                    <div class="noteCheckBoxDiv">
+                                      <input class="mx-auto TablecheckBox" type="checkbox" *ngIf="data.showCheckbox">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span>{{data.datentime}}</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <span></span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <!-- <li [ngbNavItem]="11">
+                <a ngbNavLink class="font-13 text-bold-600 defaultTabColor">Community Accounts</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+              </li> -->
+            </ul>
+            <div [ngbNavOutlet]="basicnav" class="pb-0"></div>
+          </div>
+
+          <!-- --------------- -->
+          <!-- <i *ngIf="!showSlideIcon" (click)="scrollToRight()" class="click-to-slide-icon click-to-slide-icon-right text-info text-bold-600 fa-solid fa-angle-right cursor-pointer"></i> -->
+        </div>
+
+        <!-- basicDetailsTab start -->
+
+        <!-- <div class="basic-details-div cards-div" *ngIf="checktabs==='basicDetailsTab'">
+          <div class="display-card-div row">
+            <div class="col-6">
+              <div class="card">
+                <div class="title-div title-left px-2 py-1 text-bold-600 font-14 bg-info text-white">Name</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Salutation-1">Salutation</label>
+                                <input type="text" id="Salutation-1" class="form-control" name="Salutation" placeholder="Ms">
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Title">Title</label>
+                                <input type="text" id="Title" class="form-control" name="Title" placeholder="please enter title">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Forename">Forename</label>
+                                <input type="text" id="Forename" class="form-control" name="Forename" placeholder="Joe">
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="MiddleName">Middle Name</label>
+                                <input type="text" id="MiddleName" class="form-control" name="MiddleName" placeholder="William">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Surname">Surname</label>
+                                <input type="text" id="Surname" class="form-control" name="Surname" placeholder="Smith">
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Alias">Alias</label>
+                                <input type="text" id="Alias" class="form-control" name="Alias" placeholder="please enter details">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                        <div class="profile-pic-div text-center py-2">
+                          <div><img class="rounded" width="150" src="assets\img\portrait\small\avatar-s-1.png" alt=""></div>
+                          <div class="pt-2"><a href="#" class="text-info">Remove</a></div>
+                        </div>
+                        <div>
+                          <p>Envelope</p>
+                          <p class="text-wrap">envelop details to be entered here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec varius felis. Nulla tincidunt mi sed metus tempor, sed rutrum arcu ultrices. Aliquam magna urna, mattis ut imperdiet et, consectetur sit amet metus. Mauris volutpat sit amet arcu sit amet finibus.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-left text-bold-600 px-2 py-1 font-14 background-color-silver">Communication</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="PhoneNumber">Phone Number</label>
+                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="(469)681-5620">
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EmailID">Email ID</label>
+                                <input type="text" id="EmailID" class="form-control" name="EmailID" placeholder="joesmith@mail.com">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Fax">Fax</label>
+                                <input type="text" id="Fax" class="form-control" name="Fax" placeholder="Please enter fax number">
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="WAP">Web Application Password</label>
+                                <input type="text" id="WAP" class="form-control" name="WAP"  placeholder="please enter">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="WAURL">Web Application URL</label>
+                                <input type="text" id="WAURL" class="form-control" name="WAURL" placeholder="please enter">
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="WALOGIN">Web Application Login</label>
+                                <input type="text" id="WALOGIN" class="form-control" name="WALOGIN" placeholder="please enter">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-left text-bold-600 px-2 py-1 font-14 background-color-silver">Privacy Settings</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="checkbox checkbox-info mb-2 d-flex">
+                                <input type="checkbox" id="restricted-access">
+                                <label for="restricted-access" class="ml-4">Legally restricts access to personal information</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="checkbox checkbox-info mb-2 d-flex">
+                                <input type="checkbox" id="accepts-mailing">
+                                <label for="accepts-mailing" class="ml-4">Accepts mailing only from us.</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="checkbox checkbox-info mb-2 d-flex">
+                                <input type="checkbox" id="share-personal-information">
+                                <label for="share-personal-information" class="ml-4">Allow us to share personal information</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="checkbox checkbox-info d-flex">
+                                <input type="checkbox" id="mail-returned">
+                                <label for="mail-returned" class="ml-4">Mail returned (no response/wrong address)</label>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card">
+                <div class="title-div title-right text-bold-600 px-2 py-1 font-14 bg-white">Address</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Company">Company</label>
+                                <input type="text" id="Company" class="form-control" name="Company" placeholder="Deluxe Entertainment Service Group">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="pleaseenter"></label>
+                                <input type="text" id="pleaseenter" class="form-control" name="pleaseenter" placeholder="please enter">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="city">City</label>
+                                <input type="text" id="city" class="form-control" name="City"  placeholder="Los Angeles">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Address">Address</label>
+                                <input type="text" id="Address" class="form-control" name="Address" placeholder="7620 Airport Business Park Way">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="MiddleName">Postal/Zip Code</label>
+                                <input type="text" id="MiddleName" class="form-control" name="MiddleName" placeholder="William">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="MiddleName">Province/State</label>
+                                <select name="" id=""  class="form-control">
+                                  <option value="">California</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Country">Country</label>
+                                <select name="" id="" class="form-control">
+                                  <option value="">United States</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Country">Area</label>
+                                <select name="Area" id="Area" class="form-control">
+                                  <option value="">(Undefined)</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-right text-bold-600 px-2 py-1 font-14 bg-white">Characteristics</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Gender">Gender</label>
+                                <select name="" id="Gender" class="form-control">
+                                  <option value="">please select</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Type">Type</label>
+                                <select name="" id="Type" class="form-control">
+                                  <option value="">Guest</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="ImportCode">Import Code</label>
+                                <input type="text" id="ImportCode" class="form-control" name="ImportCode" placeholder="IMC345672">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Nationality">Nationality</label>
+                                <select name="Nationality" id="Nationality" class="form-control">
+                                  <option value="">US- United States</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="AgeGroup">Age Group</label>
+                                <select name="AgeGroup" id="AgeGroup" class="form-control">
+                                  <option value="">A-Adult</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Enquiry">Enquiry</label>
+                                <select name="Enquiry" id="Enquiry" class="form-control">
+                                  <option value="">(Undefined)</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="FirstEnquiry">First Enquiry</label>
+                                <select name="FirstEnquiry" id="FirstEnquiry" class="form-control">
+                                  <option value="">(Undefined)</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="PreviousEnquiry">Previous Enquiry</label>
+                                <select name="PreviousEnquiry" id="PreviousEnquiry" class="form-control">
+                                  <option value="">(Undefined)</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="card">
+                    <div class="title-div title-right text-bold-600 px-2 py-1 font-14 bg-white">Important Properties</div>
+                    <div class="card-body-div">
+                      <div class="card text-wrap px-3">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac eros nisl. Fusce semper eu erat quis varius. Praesent interdum pretium odio nec tincidunt.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="card">
+                    <div class="title-div title-right text-bold-600 px-2 py-1 font-14 bg-white">Alert Messages</div>
+                    <div class="card-body-div">
+                      <div class="card text-wrap px-3">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac eros nisl. Fusce semper eu erat quis varius. Praesent interdum pretium odio nec tincidunt.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- basicDetailsTab end -->
+
+        <!-- additionalDetailsTab start -->
+
+        <!-- <div class="cards-div additional-details-div" *ngIf="checktabs==='additionalDetailsTab'">
+          <div class="display-card-div row">
+            <div class="col-6">
+              <div class="card">
+                <div class="title-div title-left px-2 py-1 font-14 bg-info text-white">Private</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="BirthDate">Birth Date</label>
+                                <input type="date" id="BirthDate" class="form-control" name="BirthDate" >
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="BirthPlace">Birth Place</label>
+                                <input type="text" id="BirthPlace" class="form-control" name="BirthPlace" placeholder="California">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="BirthCountry">Birth Country</label>
+                                <select name="BirthCountry" id="BirthCountry" class="form-control">
+                                  <option value="">United States</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="MaritialStatus">Maritial Status</label>
+                                <select name="MaritialStatus" id="MaritialStatus" class="form-control">
+                                  <option value="">Married</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Occupation">Occupation</label>
+                                <input type="text" id="Occupation" class="form-control" name="Occupation" placeholder="Please enter occupation">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-left px-2 py-1 font-14 background-color-silver">Additional</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="PhoneNumber">Insurence Number</label>
+                                <input type="text" id="InsurenceNumber" class="form-control" name="InsurenceNumber" placeholder="INS654625">
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="BillingName">Billing Name</label>
+                                <input type="text" id="BillingName" class="form-control" name="EmailID" placeholder="enter billing name">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="form-group mb-2">
+                                <label for="AdditionalComments">Additional Comments</label>
+                                <input type="text" id="AdditionalComments" class="form-control" name="AdditionalComments" placeholder="enter additional comments">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="WAURL">Classification Type</label>
+                                <select name="ClassificationType" id="ClassificationType" class="form-control">
+                                  <option value="">INCENT-Incentive Agent</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="form-group mb-2">
+                                <label for="ClassificationRelatedComments">Classification Related Comments</label>
+                                <input type="text" id="ClassificationRelatedComments" class="form-control" name="ClassificationRelatedComments" placeholder="enter classification related comments">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="title-div title-right px-2 py-1 font-14 bg-white">Modification</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="CreatedOn">Created On</label>
+                                <select name="" id="" class="form-control">
+                                  <option value="">15-May-2022</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="CreatedBy">Created By</label>
+                                <input type="text" id="CreatedBy" class="form-control" name="CreatedBy" placeholder="John Doe">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="LastModifiedOn">Last Modified On</label>
+                                <select name="LastModifiedOn" id="LastModifiedOn" class="form-control">
+                                  <option value="">(not applicable)</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="LastModifiedBy">Last Modified By</label>
+                                <input type="text" id="LastModifiedBy" class="form-control" name="LastModifiedBy" placeholder="enter billing name">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="title-div title-right px-2 py-1 font-14 bg-white">Repeater Program</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="RepeaterNumber">Repeater Number</label>
+                                <input type="text" class="form-control" id="RepeaterNumber" name="RepeaterNumber" placeholder="RE4383972">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="RepeaterLevel">Repeater Level</label>
+                                <select name="RepeaterLevel" id="RepeaterLevel" class="form-control">
+                                  <option value="">D01 -STAR STAR</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="PointsCollected">Points Collected</label>
+                                <input type="text" class="form-control" id="PointsCollected" name="PointsCollected" placeholder="100000">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="title-div title-right px-2 py-1 font-14 bg-white">Statistics</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="NumberOfBooking">Number of Booking</label>
+                                <input type="text" name="NumberOfBooking" id="NumberOfBooking" class="form-control" placeholder="4">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="NumberOfTrips">Number of Trips</label>
+                                <input type="text" id="NumberOfTrips" class="form-control" name="NumberOfTrips" placeholder="enter number of trips">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="NumberOfDay">Number of Day</label>
+                                <input type="text" id="NumberOfDay" class="form-control" name="NumberOfDay" placeholder="31">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="col-6">
+              <div class="card">
+                <div class="title-div title-right px-2 py-1 font-14 bg-white">Reference</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Advisor">Advisor</label>
+                                <select name="Advisor" id="Advisor" class="form-control">
+                                  <option value="">Jenna Wright</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Language">Language</label>
+                                <select name="Language" id="Language" class="form-control">
+                                  <option value="">EN-English</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="AdvisorTeam">Advisor Team</label>
+                                <select name="AdvisorTeam" id="AdvisorTeam" class="form-control">
+                                  <option value="">select advisor team</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Nationality">Currency</label>
+                                <select name="Nationality" id="Nationality" class="form-control">
+                                  <option value="">USD-United States Of America</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="AccessGroup">Access Group</label>
+                                <select name="AccessGroup" id="AccessGroup" class="form-control">
+                                  <option value="">access group</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="AccessGroup">Referer</label>
+                                <input type="text" id="AccessGroup" name="AccessGroup" placeholder="Mr.James Smith" class="form-control">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-left px-2 py-1 font-14 background-color-silver">Web Controls</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="checkbox checkbox-info mb-2 d-flex">
+                                <input type="checkbox" id="AllowToChangeSirName">
+                                <label for="AllowToChangeSirName" class="ml-4">Allow to change sirname through web</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="checkbox checkbox-info d-flex">
+                                <input type="checkbox" id="AllowToMergeSimilarFolios">
+                                <label for="AllowToMergeSimilarFolios" class="ml-4">Allow to merge with similar folios</label>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-left px-2 py-1 font-14 background-color-silver">Additional Privacy Settings</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="checkbox checkbox-info mb-2 d-flex">
+                                <input type="checkbox" id="Privacy05">
+                                <label for="Privacy05" class="ml-4">Privacy 05</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="checkbox checkbox-info mb-2 d-flex">
+                                <input type="checkbox" id="Privacy06">
+                                <label for="Privacy06" class="ml-4">Privacy 06</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="checkbox checkbox-info d-flex">
+                                <input type="checkbox" id="Privacy07">
+                                <label for="Privacy07" class="ml-4">Privacy 07</label>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-right px-2 py-1 font-14 bg-white">Benefit Program</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="BenifitProgramApplicability">Benifit Applicability</label>
+                                <select name="BenifitProgramApplicability" id="BenifitProgramApplicability" class="form-control">
+                                  <option value="">Participate to Date</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="BenefitLevel">Benefit Level</label>
+                                <select name="BenefitLevel" id="BenefitLevel" class="form-control">
+                                  <option value="">01_GST Guest Star</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="BenefitStatusBalance">Benefit Status Balance</label>
+                                <input type="text" id="BenefitStatusBalance" name="BenefitStatusBalance" placeholder="1135" class="form-control">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="ProfileBenefitBeginningDate">Profile Benefit Beginning Date</label>
+                                <input type="date" id="ProfileBenefitBeginningDate" name="ProfileBenefitBeginningDate" placeholder="select date" class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="ProfileBenefitEndDate">Profile Benefit End Date</label>
+                                <input type="date" id="ProfileBenefitEndDate" name="ProfileBenefitEndDate" placeholder="select date" class="form-control">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-left px-2 py-1 font-14 background-color-silver">Other Details</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="checkbox checkbox-info d-flex mb-1">
+                                <input type="checkbox" id="ProfileActive">
+                                <label for="ProfileActive" class="ml-4">Profile Active</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="form-group mt-2 mb-2">
+                                <label for="OtherDetailsComments" >Comments</label>
+                                <input type="text" id="OtherDetailsComments" name="OtherDetailsComments" class="form-control" placeholder="enter comments">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- additionalDetailsTab end -->
+
+        <!-- Emergency Contact Tab start -->
+
+        <!-- <div class="cards-div emergency-contact-div" *ngIf="checktabs==='emergencyContactTab'">
+          <div class="display-card-div row">
+
+            <div class="col-6">
+              <div class="card">
+                <div class="title-div title-left text-bold-600 px-2 py-1 font-14 bg-info text-white">Name</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Salutation">Salutation</label>
+                                <select name="" id="EC_Salutation" class="form-control">
+                                  <option value="">Ms</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Title">Title</label>
+                                <input type="text" id="EC_Title" class="form-control" name="EC_Title" placeholder="enter title">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Forename">Forename</label>
+                                <input type="text" name="EC_Forename" id="EC_Forename" placeholder="Arlene" class="form-control">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_MiddleName">Middle Name</label>
+                                <input type="text" id="EC_MiddleName" name="EC_MiddleName" placeholder="enter middle name" class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Surname">Surname</label>
+                                <input type="text" id="EC_Surname" class="form-control" name="EC_Surname" placeholder="Smith">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Alias">Alias</label>
+                                <input type="text" id="EC_Alias" class="form-control" name="EC_Alias" placeholder="enter alias">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Gender">Gender</label>
+                                <select name="EC_Gender" id="EC_Gender" class="form-control">
+                                  <option value="">Female</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Relation">Relation</label>
+                                <input type="text" id="EC_Relation" class="form-control" name="EC_Relation" placeholder="Mother">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Mailing">Mailing</label>
+                                <input type="text" id="EC_Mailing" class="form-control" name="EC_Mailing" placeholder="enter mailing">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Envelope">Envelope</label>
+                                <textarea id="EC_Envelope" name="EC_Envelope" rows="4" cols="50" placeholder="enter details" class="form-control"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-left text-bold-600 px-2 py-1 font-14 background-color-silver">Private</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_DateOfBirth">Date of Birth</label>
+                                <select name="EC_DateOfBirth" id="EC_DateOfBirth" class="form-control">
+                                  <option value="">25-Nov-1970</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_BirthPlace">Birth Place</label>
+                                <input type="text" id="EC_BirthPlace" class="form-control" name="EC_BirthPlace" placeholder="California">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_BirthCountry">Birth Country</label>
+                                <select name="EC_BirthCountry" id="EC_BirthCountry" class="form-control">
+                                  <option value="">United States</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Occupation">Occupation</label>
+                                <input type="text" id="EC_Occupation"  class="form-control" name="EC_Occupation" placeholder="Doctor">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_PreviousSurname">Previous Surname</label>
+                                <input type="text" id="EC_PreviousSurname"  class="form-control" name="EC_PreviousSurname" placeholder="enter previous surname">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="card">
+                <div class="title-div title-right text-bold-600 px-2 py-1 font-14 bg-white">Address</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Address">Address</label>
+                                <textarea class="form-control" id="EC_Address" name="EC_Address" rows="4" cols="50" placeholder="7620 airport business park way"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_City">City</label>
+                                <input type="text" id="EC_City" name="EC_City" class="form-control" placeholder="enter city">
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Province_State">Province/State</label>
+                                <select name="EC_Province_State" id="EC_Province_State" class="form-control">
+                                  <option value="">enter province/state</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Country">Country</label>
+                                <select id="EC_Country" name="EC_Country" class="form-control">
+                                  <option value="">enter country</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-4 col-12">
+                              <div class="form-group mb-2">
+                                <label for="Nationality">Postal/Zip Code</label>
+                                <input type="text" id="" name="" class="form-control" placeholder="enter postal/zip Code">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-left text-bold-600 px-2 py-1 font-14 background-color-silver">Communication</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Phone">Phone</label>
+                                <input type="text" id="EC_Phone" name="EC_Phone" class="form-control" placeholder="(534)239-8765">
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Email">Email</label>
+                                <input type="text" id="EC_Email" name="EC_Email" class="form-control" placeholder="Arlenesmith1970@mail.com">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_WAU">Web Application URL</label>
+                                <input type="text" id="EC_WAU" name="EC_WAU" class="form-control" placeholder="enter web application url">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Fax">Fax</label>
+                                <input type="text" id="EC_Fax" name="EC_Fax" class="form-control" placeholder="enter fax">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              </div>
+              <div class="card">
+                <div class="title-div title-left text-bold-600 px-2 py-1 font-14 background-color-silver">Other Details</div>
+                <div class="card-body-div">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="card-body">
+                        <form>
+                          <div class="form-row">
+                            <div class="col-md-12 col-12">
+                              <div class="form-group mb-2">
+                                <label for="EC_Comments">Comments</label>
+                                <input type="text" id="EC_Comments" name="EC_Comments" class="form-control" placeholder="enter comments">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- Emergency Contact Tab end -->
+
+        <!-- Additional Address Details Tab start -->
+
+        <!-- <div class="additional-address-div cards-div" *ngIf="checktabs==='additionalAddressTab'">
+          <div class="note-section">
+            <div class="note-div">
+              <div class="body-div">
+                <div class="table-div mt-2">
+                  <div class="header-div-2 p-1">
+                    <div class="records-found-div ml-1">
+                      <span class="font-14">0 Records found</span>
+                    </div>
+                    <div class="options-buttons-div">
+                      <input class="mr-1 font-12" type="text" name="search-input" id="search-input" placeholder="Search">
+                      <button class="mr-1 rounded shadow"><i class="fa-solid fa-clone"></i></button>
+                      <button class="mr-1 shadow rounded"><i class="fa-solid fa-upload"></i></button>
+                      <button class="mr-1 shadow rounded"><i class="fa-solid fa-bars"></i></button>
+                      <button class="shadow rounded"><i class="fa-solid fa-maximize"></i></button>
+                    </div>
+                  </div>
+                  <div class="real-table-div">
+                    <table>
+                      <tr>
+                        <th>
+                          <div>
+                            <span class="font-12">Alias</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Title</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Phone</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Email</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Street</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">City</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Postal Code</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Country</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 1</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 2</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 3</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 4</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 5</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 6</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 7</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 8</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr *ngFor="let data of additional_address_data">
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div> -->
+
+        <!-- Additional Address Details Tab end -->
+
+        <!-- Documents Tab start -->
+
+        <!-- <div class="documents-div cards-div" *ngIf="checktabs==='documentsTab'">
+          <div class="note-section">
+            <div class="note-div">
+              <div class="body-div">
+                <div class="table-div mt-2">
+                  <div class="header-div-2 p-1">
+                    <div class="records-found-div ml-1">
+                      <span class="font-14">01 Records found</span>
+                    </div>
+                    <div class="options-buttons-div">
+                      <input class="mr-1 font-12" type="text" name="search-input" id="search-input" placeholder="Search">
+                      <button class="mr-1 rounded shadow"><i class="fa-solid fa-clone"></i></button>
+                      <button class="mr-1 shadow rounded"><i class="fa-solid fa-upload"></i></button>
+                      <button class="mr-1 shadow rounded"><i class="fa-solid fa-bars"></i></button>
+                      <button class="shadow rounded"><i class="fa-solid fa-maximize"></i></button>
+                    </div>
+                  </div>
+                  <div class="real-table-div">
+                    <table>
+                      <tr>
+                        <th>
+                          <div>
+                            <span class="font-12">Stored Documents</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Title</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Document Number</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Issuing Country</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Issue Name</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Default</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Expiry Date</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 1</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 2</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 3</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 4</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 5</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr *ngFor="let data of documents_data">
+                        <td>
+                          <div>
+                            <span>{{data.stored_documents}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.type}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.document_number}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.issuing_country}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.issue_name}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <input class="mx-auto TablecheckBox" type="checkbox" *ngIf="data.showCheckbox">
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.expiry_date}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div> -->
+
+        <!-- Documents Tab end -->
+
+        <!-- Note Tab start -->
+
+        <!-- <div class="note-div cards-div" *ngIf="checktabs==='noteTab'">
+          <div class="note-section">
+            <div class="note-div">
+              <div class="body-div">
+                <div class="table-div mt-2">
+                  <div class="header-div-1 p-1">
+                    <div class="note-buttons-div mr-1 d-flex">
+                      <button class="font-12 btn btn-outline-info px-1 py-0">Note Summary</button>
+                    </div>
+                    <div class="add-remove-customize-div mr-2">
+                      <button class="btn mr-1"><i class="fa-solid fa-circle-minus"></i></button>
+                      <button class="btn mr-1"><i class="fa-solid fa-square-plus"></i></button>
+                      <button class="btn mr-1"><i class="fa-solid fa-pencil"></i></button>
+                      <button class="btn"><i class="fas fa-plus-square"></i></button>
+                    </div>
+                  </div>
+                  <div class="header-div-2 p-1">
+                    <div class="records-found-div ml-1">
+                      <span class="font-14">01 Records found</span>
+                    </div>
+                    <div class="options-buttons-div">
+                      <input class="mr-1 font-12" type="text" name="search-input" id="search-input" placeholder="Search">
+                      <button class="mr-1 rounded shadow"><i class="fa-solid fa-clone"></i></button>
+                      <button class="mr-1 shadow rounded"><i class="fa-solid fa-upload"></i></button>
+                      <button class="mr-1 shadow rounded"><i class="fa-solid fa-bars"></i></button>
+                      <button class="shadow rounded"><i class="fa-solid fa-maximize"></i></button>
+                    </div>
+                  </div>
+                  <div class="real-table-div">
+                    <table>
+                      <tr>
+                        <th>
+                          <div class="noteCheckBoxDiv">
+                            <input class="TablecheckBox" type="checkbox" disabled>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Created Date</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Status</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Output</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Template Group</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Code</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Type</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Description</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Email Date</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Note Template Name & Code</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Agent Name</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 1</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 2</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr *ngFor="let data of note_data">
+                        <td>
+                          <div class="noteCheckBoxDiv">
+                            <input class="TablecheckBox" type="checkbox" *ngIf="data.showCheckbox">
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.created_date}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="note-table-switch-div custom-switch custom-switch-info custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" id="color-switch-6" checked *ngIf="data.showSwitch">
+                            <label class="custom-control-label" for="color-switch-6" *ngIf="data.showSwitch">
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.output}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.template_group}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.code}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.type}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.description}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.email_date}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.note_template_name_and_code}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.agent_name}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Note Tab end -->
+
+        <!-- Custom Folio Info Tab start -->
+
+        <!-- <div class="custom-folio-info-div cards-div" *ngIf="checktabs==='CustomFolioInfoTab'">
+          <div class="custom-folio-info-inner-div pt-3">
+            <div class="custom-folio-info-header-div d-flex">
+              <div class="d-flex w-50 mr-3">
+                <div class="search-div d-flex flex-column w-100 mr-2">
+                  <label class="font-12 mb-1" for="">Search</label>
+                  <input class="font-12" type="text" placeholder="enter search keyword">
+                </div>
+                <div class="survey-select-div d-flex flex-column w-100">
+                  <label class="font-12 mb-1" for="">Survey Group</label>
+                  <select name="" id="" class="font-12">
+                    <option class="font-12" value="">select survey group</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex flex-column mr-3">
+                <span class="custom-folio-info_Include-unanswered-questions-span font-12 mb-1">Include unanswered questions</span>
+                <div class="custom-folio-info-switch-div custom-switch custom-switch-info custom-control-inline">
+                  <input type="checkbox" class="custom-control-input" id="color-switch-6" checked>
+                  <label class="custom-control-label" for="color-switch-6">
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex align-items-end">
+                <button class="btn btn-info mr-1 px-1 py-0"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="custom-folio-info-tab-filter-button btn bg-white px-1 py-0 mr-1" ><i class="fa-solid fa-filter" style="color:#7B7B7B"></i></button>
+              </div>
+            </div>
+            <div class="custom-folio-info-body-div">
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf="!custom_folio_tab_survey_tuggle" (click)="custom_folio_tab_survey_table_show()"></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer" *ngIf="custom_folio_tab_survey_tuggle" (click)="custom_folio_tab_survey_table_show()"></i>
+                  <span class="font-12">Survey:Amenities</span>
+                </div>
+                <div class="card table-div ml-5 mr-2 mt-0" *ngIf="custom_folio_tab_survey_table_tuggle">
+                  <div class="header-div-2 p-1">
+                    <div class="records-found-div ml-1">
+                      <span class="font-12">20 Records found</span>
+                    </div>
+                  </div>
+                  <div class="real-table-div custom-folio-table-div">
+                    <table>
+                      <tr>
+                        <th>
+                          <div>
+                            <span class="font-12">Question</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Answer</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Survey Scope</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Event Code</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Actions</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 1</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 2</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 3</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 4</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr *ngFor="let data of custom_folio_info_data">
+                        <td>
+                          <div>
+                            <span>{{data.question}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.answer}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div *ngIf="data.answer!==''">
+                            <i class="fa-solid fa-eye border border-dark rounded p-1 cursor-pointer mr-1"></i>
+                            <i class="fa-solid fa-circle-xmark border border-dark rounded p-1 cursor-pointer"></i>
+                          </div>
+                          <div *ngIf="data.answer===''">
+                            <button class="btn btn-transparent border-dark text-dark px-1 py-0 font-12">Set Answer</button>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                  <span class="font-12">Survey: Medical Remarks</span>
+                </div>
+              </div>
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                  <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                </div>
+              </div>
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                  <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                </div>
+              </div>
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                  <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                </div>
+              </div>
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                  <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Custom Folio Info Tab end -->
+
+        <!-- Questionnnaire Tab start -->
+
+        <!-- <div class="questionnnaire-div cards-div" *ngIf="checktabs==='QuestionnnaireTab'">
+          <div class="questionnnaire-inner-div pt-3">
+            <div class="questionnnaire-header-div d-flex">
+              <div class="d-flex w-50 mr-3">
+                <div class="search-div d-flex flex-column w-100 mr-2">
+                  <label class="font-12 mb-1" for="">Search</label>
+                  <input class="font-12" type="text" placeholder="enter search keyword">
+                </div>
+                <div class="survey-select-div d-flex flex-column w-100">
+                  <label class="font-12 mb-1" for="">Survey Group</label>
+                  <select name="" id="" class="font-12">
+                    <option class="font-12" value="">select survey group</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex flex-column mr-3">
+                <span class="questionnnaire_Include-unanswered-questions-span font-12 mb-1">Include unanswered questions</span>
+                <div class="questionnnaire-switch-div custom-switch custom-switch-info custom-control-inline">
+                  <input type="checkbox" class="custom-control-input" id="color-switch-6" checked>
+                  <label class="custom-control-label" for="color-switch-6">
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex align-items-end">
+                <button class="btn btn-info mr-1 px-1 py-0"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="questionnnaire-tab-filter-button btn bg-white px-1 py-0 mr-1" ><i class="fa-solid fa-filter" style="color:#7B7B7B"></i></button>
+              </div>
+            </div>
+            <div class="questionnnaire-body-div">
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf="!questionnnaire_tab_survey_tuggle" (click)="questionnnaire_tab_survey_table_show()"></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer" *ngIf="questionnnaire_tab_survey_tuggle" (click)="questionnnaire_tab_survey_table_show()"></i>
+                  <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                </div>
+                <div class="card table-div ml-5 mr-2 mt-0" *ngIf="questionnnaire_tab_survey_table_tuggle">
+                  <div class="header-div-2 p-1">
+                    <div class="records-found-div ml-1">
+                      <span class="font-12">20 Records found</span>
+                    </div>
+                  </div>
+                  <div class="real-table-div questionnnaire-table-div">
+                    <table>
+                      <tr>
+                        <th>
+                          <div>
+                            <span class="font-12">Question</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Answer</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Created Date</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Actions</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 1</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 2</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 3</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 4</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 5</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 6</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 7</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 8</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr *ngFor="let data of questionnnaire_data">
+                        <td>
+                          <div>
+                            <span>{{data.question}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.answer}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div *ngIf="data.answer!==''">
+                            <i class="fa-solid fa-eye border border-dark rounded p-1 cursor-pointer mr-1"></i>
+                            <i class="fa-solid fa-circle-xmark border border-dark rounded p-1 cursor-pointer"></i>
+                          </div>
+                          <div *ngIf="data.answer===''">
+                            <button class="btn btn-transparent border-dark text-dark px-1 py-0 font-12">Set Answer</button>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                  <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                </div>
+              </div>
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                  <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                </div>
+              </div>
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                  <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                </div>
+              </div>
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                  <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                </div>
+              </div>
+              <div class="card title-div">
+                <div class="py-2 d-flex align-items-center">
+                  <i class="fas fa-angle-down px-3 cursor-pointer" *ngIf=""></i>
+                  <i class="fas fa-angle-right px-3 cursor-pointer"></i>
+                  <span class="font-12">Survey: Customer Behaviour Pattern</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Questionnnaire Tab end -->
+
+        <!-- Voucher Tab Start -->
+
+        <!-- <div class="voucher-div cards-div" *ngIf="checktabs==='VoucherTab'">
+          <div class="voucher-section">
+            <div class="voucher-div">
+              <div class="body-div">
+                <div class="table-div mt-2">
+                  <div class="header-div-2 p-1">
+                    <div class="records-found-div ml-1">
+                      <span class="font-14">01 Records found</span>
+                    </div>
+                    <div class="options-buttons-div">
+                      <input class="mr-1 font-12" type="text" name="search-input" id="search-input" placeholder="Search">
+                      <button class="mr-1 rounded shadow"><i class="fa-solid fa-clone"></i></button>
+                      <button class="mr-1 shadow rounded"><i class="fa-solid fa-upload"></i></button>
+                      <button class="mr-1 shadow rounded"><i class="fa-solid fa-bars"></i></button>
+                      <button class="shadow rounded"><i class="fa-solid fa-maximize"></i></button>
+                    </div>
+                  </div>
+                  <div class="real-table-div">
+                    <table>
+                      <tr>
+                        <th>
+                          <div class="noteCheckBoxDiv">
+                            <input class="TablecheckBox" type="checkbox" disabled>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Created Date</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Status</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Name of Voucher</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Type</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Code</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Window</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="low-width-div">
+                            <span class="font-12">Recipient Name</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Buyer Name</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Action</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 0</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 1</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 2</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr *ngFor="let data of voucher_data">
+                        <td>
+                          <div class="noteCheckBoxDiv">
+                            <input class="TablecheckBox" type="checkbox" *ngIf="data.showCheckbox">
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.created_date}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <i class="fas fa-check-circle text-success mr-2 font-18" *ngIf="data.status==='Active'"></i>
+                            <i class="fas fa-times-circle voucer-tab-table-inactive-icon mr-2 font-18" *ngIf="data.status==='Inactive'"></i>
+                            <span>{{data.status}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.nameOfVoucher}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span><i *ngIf="data.action==='yes'" class="fa-solid fa-pencil cursor-pointer border border-dark rounded p-1"></i></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Voucher Tab End -->
+
+        <!-- Audit Info Tab Start -->
+
+        <!-- <div class="documents-div cards-div" *ngIf="checktabs==='AuditInfoTab'">
+          <div class="note-section">
+            <div class="note-div">
+              <div class="body-div">
+                <div class="table-div mt-2">
+                  <div class="Audit-Info-header-div-1 p-1 d-flex justify-content-start">
+                    <div class="note-buttons-div button-group">
+                      <button class="font-12 px-2 py-1" [ngClass]="{ 'active': selectedNoteButton === 'button1' }" (click)="selectNoteButton('button1')">+ Audit Detailed Changes</button>
+                      <div class="vertical-line-div"></div>
+                      <button class="font-12 px-2 py-1" [ngClass]="{ 'active': selectedNoteButton === 'button2' }" (click)="selectNoteButton('button2')">+ Audit History</button>
+                      <div class="vertical-line-div"></div>
+                      <button class="font-12 px-2 py-1" [ngClass]="{ 'active': selectedNoteButton === 'button3' }" (click)="selectNoteButton('button3')">+ Folio Merge Details</button>
+                    </div>
+                  </div>
+                  <div class="header-div-2 p-1">
+                    <div class="records-found-div ml-1">
+                      <span class="font-14">03 Records found</span>
+                    </div>
+                    <div class="options-buttons-div">
+                      <input class="mr-1 font-12" type="text" name="search-input" id="search-input" placeholder="Search">
+                      <button class="mr-1 rounded shadow"><i class="fa-solid fa-clone"></i></button>
+                      <button class="mr-1 shadow rounded"><i class="fa-solid fa-upload"></i></button>
+                      <button class="mr-1 shadow rounded"><i class="fa-solid fa-bars"></i></button>
+                      <button class="shadow rounded"><i class="fa-solid fa-maximize"></i></button>
+                    </div>
+                  </div>
+                  <div class="real-table-div">
+                    <table>
+                      <tr>
+                        <th>
+                          <div class="noteCheckBoxDiv">
+                            <input class="TablecheckBox" type="checkbox" disabled>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Date & Time</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Audit Type Description</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Agency Code & Name</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Column Name</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Column Description</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">User Surname</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">User Forename</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Login</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 1</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 2</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 3</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                        <th>
+                          <div>
+                            <span class="font-12">Extra Tab 4</span>
+                            <i class="fa-solid fa-filter ml-2"></i>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr *ngFor="let data of auditinfo_data">
+                        <td>
+                          <div class="noteCheckBoxDiv">
+                            <input class="mx-auto TablecheckBox" type="checkbox" *ngIf="data.showCheckbox">
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span>{{data.datentime}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span></span>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Audit Info Tab End -->
+
+      </div>
+    </div>
+  </div>
+</section>
